@@ -19,6 +19,7 @@ let state = {
   num1: null,
   num2: null,
   operator: null,
+  operatorStr: "",
   result: null,
 };
 
@@ -32,6 +33,7 @@ buttons.forEach((button) => {
 
     if (!isNaN(value)) {
       handleNumber(value);
+      update();
     } else if (
       value === "÷" ||
       value === "×" ||
@@ -39,6 +41,7 @@ buttons.forEach((button) => {
       value === "+"
     ) {
       handleOperator(value);
+      update();
     } else if (value === "=") {
       handleEqual();
     }
@@ -57,18 +60,31 @@ function handleNumber(num) {
 function handleOperator(operator) {
   if (operator === "÷") {
     state.operator = divide;
+    state.operatorStr = operator;
   } else if (operator === "+") {
     state.operator = add;
+    state.operatorStr = operator;
   } else if (operator === "−") {
     state.operator = subtract;
+    state.operatorStr = operator;
   } else if (operator === "×") {
     state.operator = multiply;
+    state.operatorStr = operator;
   }
   console.log(`handle operator called by ${operator}`);
   console.log(state.operator);
 }
 function handleEqual() {
   if (state.num1 && state.num2 && state.operator) {
-    operate(state.num1, state.num2, state.operator);
+    state.result = operate(state.num1, state.num2, state.operator);
+  }
+}
+function update() {
+  if ((state.num1, state.operator, state.num2)) {
+    display.textContent = `${state.num1} ${state.operatorStr} ${state.num2}`;
+  } else if ((state.num1, state.operator)) {
+    display.textContent = `${state.num1} ${state.operatorStr}`;
+  } else if (state.num1) {
+    display.textContent = `${state.num1}`;
   }
 }
