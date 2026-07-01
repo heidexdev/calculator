@@ -53,6 +53,8 @@ buttons.forEach((button) => {
       update();
     } else if (value === "RESET") {
       handleReset();
+    } else if (value === "DEL") {
+      handleDelete();
     }
   });
 });
@@ -100,6 +102,14 @@ function handleReset() {
   state.operatorStr = "";
   state.result = null;
   display.textContent = "";
+}
+function handleDelete() {
+  if (state.operator === null) {
+    state.num1 = state.num1.slice(0, -1);
+  } else {
+    state.num2 = state.num2.slice(0, -1);
+  }
+  update();
 }
 function update() {
   if (state.result) {
