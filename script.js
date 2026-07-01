@@ -49,12 +49,26 @@ function handleNumber(num) {
 
   if (state.operator === null) {
     state.num1 = state.num1 ? state.num1 + num : num;
-  } else{
+  } else {
     state.num2 = state.num2 ? state.num2 + num : num;
   }
   console.log(state.num1, state.num2);
 }
 function handleOperator(operator) {
-  state.operator = operator;
+  if (operator === "÷") {
+    state.operator = divide;
+  } else if (operator === "+") {
+    state.operator = add;
+  } else if (operator === "−") {
+    state.operator = subtract;
+  } else if (operator === "×") {
+    state.operator = multiply;
+  }
   console.log(`handle operator called by ${operator}`);
+  console.log(state.operator);
+}
+function handleEqual() {
+  if (state.num1 && state.num2 && state.operator) {
+    operate(state.num1, state.num2, state.operator);
+  }
 }
