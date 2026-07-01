@@ -28,5 +28,29 @@ const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     const value = button.textContent;
+    console.log(`event listener fired on ${value}`);
+
+    if (!isNaN(value)) {
+      handleNumber(value);
+    } else if (
+      value === "÷" ||
+      value === "×" ||
+      value === "−" ||
+      value === "+"
+    ) {
+      handleOperator(value);
+    } else if (value === "=") {
+      handleEqual();
+    }
   });
 });
+function handleNumber(num) {
+  console.log(`handle number is called on ${num}`);
+
+  if (state.operator === null) {
+    state.num1 = state.num1 ? state.num1 + num : num;
+  } else if (!state.operator === null) {
+    state.num2 = state.num2 ? state.num2 + num : num;
+  }
+  console.log(state.num1, state.num2);
+}
