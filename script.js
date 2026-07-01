@@ -84,7 +84,10 @@ function handleOperator(operator) {
 function handleEqual() {
   if (state.num1 && state.num2 && state.operator) {
     state.result = operate(state.num1, state.num2, state.operator);
-    console.log(state.result);
+    state.num1 = state.result;
+    state.num2 = null;
+    state.operator = null;
+    state.result = null;
   }
 }
 function handleClear() {
