@@ -69,6 +69,9 @@ buttons.forEach((button) => {
 function handleNumber(num) {
   console.log(`handle number is called on ${num}`);
 
+  if (state.result === "ERROR") {
+    handleReset();
+  }
   if (state.operator === null) {
     if (num === "." && (state.num1 === null || state.num1 === "")) {
       state.num1 = 0 + num;
@@ -107,6 +110,7 @@ function handleEqual() {
     state.result = operate(state.num1, state.num2, state.operator);
     if (state.result === "ERROR") {
       handleReset();
+      state.result = "ERROR";
       return;
     }
     state.num1 = state.result;
@@ -116,13 +120,6 @@ function handleEqual() {
   }
 }
 function handleReset() {
-  if (state.result === "ERROR") {
-    state.num1 = null;
-    state.num2 = null;
-    state.operator = null;
-    state.operatorStr = "";
-    return;
-  }
   state.num1 = null;
   state.num2 = null;
   state.operator = null;
@@ -152,8 +149,6 @@ function update() {
     display.textContent = `${state.num1} ${state.operatorStr}`;
   } else if (state.num1) {
     display.textContent = `${state.num1}`;
-  } else if (state.result === "ERROR") {
-    display.textContent = state.result;
   } else {
     display.textContent = "";
   }
