@@ -1,13 +1,20 @@
 function add(num1, num2) {
+  [num1, num2] = [parseFloat(num1), parseFloat(num2)];
   return num1 + num2;
 }
 function subtract(num1, num2) {
+  [num1, num2] = [parseFloat(num1), parseFloat(num2)];
+
   return num1 - num2;
 }
 function divide(num1, num2) {
+  [num1, num2] = [parseFloat(num1), parseFloat(num2)];
+
   return num1 / num2;
 }
 function multiply(num1, num2) {
+  [num1, num2] = [parseFloat(num1), parseFloat(num2)];
+
   return num1 * num2;
 }
 
@@ -29,7 +36,6 @@ const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     const value = button.textContent;
-    console.log(`event listener fired on ${value}`);
 
     if (!isNaN(value)) {
       handleNumber(value);
@@ -44,6 +50,7 @@ buttons.forEach((button) => {
       update();
     } else if (value === "=") {
       handleEqual();
+      update();
     }
   });
 });
@@ -55,7 +62,6 @@ function handleNumber(num) {
   } else {
     state.num2 = state.num2 ? state.num2 + num : num;
   }
-  console.log(state.num1, state.num2);
 }
 function handleOperator(operator) {
   if (operator === "÷") {
@@ -71,16 +77,18 @@ function handleOperator(operator) {
     state.operator = multiply;
     state.operatorStr = operator;
   }
-  console.log(`handle operator called by ${operator}`);
   console.log(state.operator);
 }
 function handleEqual() {
   if (state.num1 && state.num2 && state.operator) {
     state.result = operate(state.num1, state.num2, state.operator);
+    console.log(state.result);
   }
 }
 function update() {
-  if ((state.num1, state.operator, state.num2)) {
+  if (state.result) {
+    display.textContent = state.result;
+  } else if ((state.num1, state.operator, state.num2)) {
     display.textContent = `${state.num1} ${state.operatorStr} ${state.num2}`;
   } else if ((state.num1, state.operator)) {
     display.textContent = `${state.num1} ${state.operatorStr}`;
