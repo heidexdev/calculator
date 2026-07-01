@@ -104,7 +104,10 @@ function handleReset() {
   display.textContent = "";
 }
 function handleDelete() {
-  if (state.operator === null) {
+  if (state.num1 && (state.num2 === null || state.num2 === "")) {
+    state.operator = null;
+    state.operatorStr = "";
+  } else if (state.operator === null) {
     state.num1 = state.num1.slice(0, -1);
   } else if (state.operator && state.num1) {
     state.num2 = state.num2.slice(0, -1);
