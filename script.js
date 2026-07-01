@@ -19,7 +19,8 @@ function multiply(num1, num2) {
 }
 
 function operate(num1, num2, operator) {
-  return operator(num1, num2);
+  const result = operator(num1, num2);
+  return parseFloat(result.toFixed(2));
 }
 
 let state = {
@@ -112,7 +113,11 @@ function handleReset() {
   display.textContent = "";
 }
 function handleDelete() {
-  if (state.num1 && (state.num2 === null || state.num2 === "")) {
+  if (
+    state.num1 &&
+    (state.num2 === null || state.num2 === "") &&
+    state.operator
+  ) {
     state.operator = null;
     state.operatorStr = "";
   } else if (state.operator === null) {
