@@ -101,9 +101,9 @@ function handleClear() {
 function update() {
   if (state.result) {
     display.textContent = state.result;
-  } else if ((state.num1, state.operator, state.num2)) {
+  } else if (state.num1 && state.operator && state.num2) {
     display.textContent = `${state.num1} ${state.operatorStr} ${state.num2}`;
-  } else if ((state.num1, state.operator)) {
+  } else if (state.num1 && state.operator) {
     display.textContent = `${state.num1} ${state.operatorStr}`;
   } else if (state.num1) {
     display.textContent = `${state.num1}`;
