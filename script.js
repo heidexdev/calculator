@@ -64,8 +64,10 @@ buttons.forEach((button) => {
       update();
     } else if (value === "RESET") {
       handleReset();
+      update();
     } else if (value === "DEL") {
       handleDelete();
+      update();
     }
   });
 });
@@ -127,7 +129,6 @@ function handleReset() {
   state.operator = null;
   state.operatorStr = "";
   state.result = null;
-  display.textContent = "";
 }
 function handleDelete() {
   if (
@@ -142,7 +143,6 @@ function handleDelete() {
   } else if (state.operator && state.num1) {
     state.num2 = state.num2.slice(0, -1);
   }
-  update();
 }
 function update() {
   if (state.result === "ERROR") {
