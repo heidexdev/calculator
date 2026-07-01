@@ -37,7 +37,7 @@ buttons.forEach((button) => {
   button.addEventListener("click", () => {
     const value = button.textContent;
 
-    if (!isNaN(value)) {
+    if (!isNaN(value) || value === ".") {
       handleNumber(value);
       update();
     } else if (
@@ -62,6 +62,10 @@ function handleNumber(num) {
   console.log(`handle number is called on ${num}`);
 
   if (state.operator === null) {
+    if (num === "." && (state.num1 === null || state.num1 === "")) {
+      state.num1 = 0 + num;
+      return;
+    }
     state.num1 = state.num1 ? state.num1 + num : num;
   } else {
     state.num2 = state.num2 ? state.num2 + num : num;
