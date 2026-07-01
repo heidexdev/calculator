@@ -43,6 +43,11 @@ buttons.forEach((button) => {
   button.addEventListener("click", () => {
     const value = button.textContent;
 
+    if (display.textContent === "ERROR") {
+      display.textContent = "";
+      state.result = null;
+    }
+
     if (!isNaN(value) || value === ".") {
       handleNumber(value);
       update();
@@ -103,6 +108,13 @@ function handleOperator(operator) {
 function handleEqual() {
   if (state.num1 && state.num2 && state.operator) {
     state.result = operate(state.num1, state.num2, state.operator);
+    if (state.result === "ERROR") {
+      state.num1 = null;
+      state.num2 = null;
+      state.operator = null;
+      state.operatorStr = "";
+      return;
+    }
     state.num1 = state.result;
     state.num2 = null;
     state.operator = null;
@@ -133,6 +145,9 @@ function handleDelete() {
   update();
 }
 function update() {
+  if (state.result === "ERROR") {
+    display.textContent = state.result;
+  }
   if (state.result) {
     display.textContent = state.result;
   } else if (state.num1 && state.operator && state.num2) {
