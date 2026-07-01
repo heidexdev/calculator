@@ -51,8 +51,8 @@ buttons.forEach((button) => {
     } else if (value === "=") {
       handleEqual();
       update();
-    } else if (value === "clear") {
-      handleClear();
+    } else if (value === "RESET") {
+      handleReset();
     }
   });
 });
@@ -93,7 +93,7 @@ function handleEqual() {
     state.result = null;
   }
 }
-function handleClear() {
+function handleReset() {
   state.num1 = null;
   state.num2 = null;
   state.operator = null;
