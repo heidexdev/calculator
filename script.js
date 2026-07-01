@@ -51,6 +51,8 @@ buttons.forEach((button) => {
     } else if (value === "=") {
       handleEqual();
       update();
+    } else if (value === "clear") {
+      handleClear();
     }
   });
 });
@@ -84,6 +86,14 @@ function handleEqual() {
     state.result = operate(state.num1, state.num2, state.operator);
     console.log(state.result);
   }
+}
+function handleClear() {
+  state.num1 = null;
+  state.num2 = null;
+  state.operator = null;
+  state.operatorStr = "";
+  state.result = null;
+  display.textContent = "";
 }
 function update() {
   if (state.result) {
