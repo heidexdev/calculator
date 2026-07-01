@@ -68,6 +68,10 @@ function handleNumber(num) {
     }
     state.num1 = state.num1 ? state.num1 + num : num;
   } else {
+    if (num === "." && (state.num2 === null || state.num2 === "")) {
+      state.num2 = 0 + num;
+      return;
+    }
     state.num2 = state.num2 ? state.num2 + num : num;
   }
 }
