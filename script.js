@@ -116,6 +116,13 @@ function handleEqual() {
   }
 }
 function handleReset() {
+  if (state.result === "ERROR") {
+    state.num1 = null;
+    state.num2 = null;
+    state.operator = null;
+    state.operatorStr = "";
+    return;
+  }
   state.num1 = null;
   state.num2 = null;
   state.operator = null;
@@ -137,9 +144,6 @@ function handleDelete() {
   }
 }
 function update() {
-  if (state.result === "ERROR") {
-    display.textContent = state.result;
-  }
   if (state.result) {
     display.textContent = state.result;
   } else if (state.num1 && state.operator && state.num2) {
@@ -148,6 +152,8 @@ function update() {
     display.textContent = `${state.num1} ${state.operatorStr}`;
   } else if (state.num1) {
     display.textContent = `${state.num1}`;
+  } else if (state.result === "ERROR") {
+    display.textContent = state.result;
   } else {
     display.textContent = "";
   }
