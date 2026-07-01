@@ -9,7 +9,9 @@ function subtract(num1, num2) {
 }
 function divide(num1, num2) {
   [num1, num2] = [parseFloat(num1), parseFloat(num2)];
-
+  if (num2 === 0) {
+    return "ERROR";
+  }
   return num1 / num2;
 }
 function multiply(num1, num2) {
@@ -20,6 +22,9 @@ function multiply(num1, num2) {
 
 function operate(num1, num2, operator) {
   const result = operator(num1, num2);
+  if (result === "ERROR") {
+    return "ERROR";
+  }
   return parseFloat(result.toFixed(2));
 }
 
