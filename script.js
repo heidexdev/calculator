@@ -66,7 +66,22 @@ function handleNumber(num) {
   }
 }
 function handleOperator(operator) {
-  if (operator === "÷") {
+  if (state.num1 && state.num2 && state.operator) {
+    handleEqual();
+    if (operator === "÷") {
+      state.operator = divide;
+      state.operatorStr = operator;
+    } else if (operator === "+") {
+      state.operator = add;
+      state.operatorStr = operator;
+    } else if (operator === "−") {
+      state.operator = subtract;
+      state.operatorStr = operator;
+    } else if (operator === "×") {
+      state.operator = multiply;
+      state.operatorStr = operator;
+    }
+  } else if (operator === "÷") {
     state.operator = divide;
     state.operatorStr = operator;
   } else if (operator === "+") {
