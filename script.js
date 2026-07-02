@@ -108,12 +108,13 @@ function handleOperator(operator) {
 function handleEqual() {
   if (state.num1 && state.num2 && state.operator) {
     state.result = operate(state.num1, state.num2, state.operator);
+
     if (state.result === "ERROR") {
       handleReset();
       state.result = "ERROR";
       return;
     }
-    state.num1 = state.result;
+    state.num1 = state.result.toString();
     state.num2 = null;
     state.operator = null;
     state.result = null;
